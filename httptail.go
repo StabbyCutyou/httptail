@@ -66,7 +66,7 @@ func (t *HttpTailer) Tail() error {
 }
 
 // Results will return a copy of the internal results, as re-running Tail
-// will reset them, and you may want to re-use the HttpTailer
+// will reset them, and you may want to keep the results between runs
 func (t *HttpTailer) Results() []HttpRedirectLog {
 	l := make([]HttpRedirectLog, len(t.redirects))
 	for i, r := range t.redirects {
