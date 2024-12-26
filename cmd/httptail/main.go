@@ -15,16 +15,13 @@ func main() {
 	}
 	// TODO validate that it is a url, but the hard-fault they'll hit
 	// if they don't pass a valud url will also verify that lol
-	t, err := httptail.NewHttpTailer(os.Args[1])
+	l, err := httptail.Tail(os.Args[1])
 	if err != nil {
-		log.Fatal(err)
-	}
-	if err := t.Tail(); err != nil {
 		log.Fatal(err)
 	}
 	// Pretty print the results, could make this an optional flag
 	// if folks don't wanna waste the bytes
-	b, err := json.MarshalIndent(t.Results(), "", "\t")
+	b, err := json.MarshalIndent(l, "", "\t")
 	if err != nil {
 		log.Fatal(err)
 	}
